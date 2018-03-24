@@ -1,0 +1,14 @@
+name: EcoUserManager
+main: jp.minecraftuser.ecousermanager.EcoUserManager
+version: ${project.version}
+depend: [EcoFramework]
+commands:
+  ecu:
+    description: ecu command.
+    usage: /<command> option
+  uuid:
+    description: uuid command.
+    usage: /<command> option
+  uname:
+    description: uname command.
+    usage: /<command> option
