@@ -21,6 +21,10 @@ public class EcoUserManagerConfig extends ConfigFrame{
         store = new EcoUserUUIDStore((EcoUserManager)plg);
     }
     
+    /**
+     * 保持するUUID/プレイヤー名ストアのインスタンスを取得
+     * @return EcoUserUUIDStoreインスタンス
+     */
     public EcoUserUUIDStore getStore() {
         return this.store;
     }

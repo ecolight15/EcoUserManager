@@ -10,19 +10,35 @@ import jp.minecraftuser.ecousermanager.config.EcoUserManagerConfig;
 import jp.minecraftuser.ecousermanager.db.EcoUserUUIDStore;
 import jp.minecraftuser.ecousermanager.listener.PlayerListener;
 
+/**
+ * EcoUserManagerメインクラス
+ * @author ecolight
+ */
 public class EcoUserManager extends PluginFrame {
     private static EcoUserManagerConfig ecuConf = null;
+    
+    /**
+     * プラグイン起動
+     */
+    @Override
     public void onEnable() {
         initialize();
         ecuConf = (EcoUserManagerConfig)getDefaultConfig();
     }
 
+    /**
+     * プラグイン停止
+     */
+    @Override
     public void onDisable()
     {
-        if (ecuConf.getStore() != null) ecuConf.getStore().finalize();
+        if (ecuConf.getStore() != null) ecuConf.getStore().dbFinalize();
         disable();
     }
 
+    /**
+     * 設定初期化
+     */
     @Override
     public void initializeConfig() {
         EcoUserManagerConfig conf = new EcoUserManagerConfig(this);
@@ -30,6 +46,9 @@ public class EcoUserManager extends PluginFrame {
         registerPluginConfig(conf);
     }
 
+    /**
+     * コマンド初期化
+     */
     @Override
     public void initializeCommand() {
         CommandFrame cmd = new EcuCommand(this, "ecu");
@@ -39,11 +58,18 @@ public class EcoUserManager extends PluginFrame {
         registerPluginCommand(new UuidCommand(this, "uuid"));
     }
 
+    /**
+     * リスナ初期化
+     */
     @Override
     public void initializeListener() {
         registerPluginListener(new PlayerListener(this, "player"));
     }
 
+    /**
+     * UUID/プレイヤー名のストアインスタンス取得(他プラグイン提供用)
+     * @return 
+     */
     public EcoUserUUIDStore getStore() {
         return ecuConf.getStore();
     }

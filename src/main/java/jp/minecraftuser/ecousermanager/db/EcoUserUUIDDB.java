@@ -53,13 +53,13 @@ public class EcoUserUUIDDB {
      * 閉塞処理用
      */
     public void EcoUserUUIDDB_() {
-        Finalize();
+        dbFinalize();
     }
 
     /**
      * 閉塞処理
      */
-    public void Finalize() {
+    public void dbFinalize() {
         if (con == null) {return;}
         try {
             con.close();
