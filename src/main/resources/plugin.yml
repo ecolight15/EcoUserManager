@@ -6,9 +6,16 @@ commands:
   ecu:
     description: ecu command.
     usage: /<command> option
+    permission: ecouser
+  ecu reload:
+    description: reload ecu configuration file command.
+    usage: /<command> option
+    permission: ecouser.reload
   uuid:
     description: uuid command.
     usage: /<command> option
+    permission: ecouser.uuid
   uname:
     description: uname command.
     usage: /<command> option
+    permission: ecouser.uname
