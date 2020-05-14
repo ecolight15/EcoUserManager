@@ -186,6 +186,7 @@ public class EcoUserUUIDDB {
      */
     public ArrayList<EcoUserUUIDData> listName(UUID uuid) {
         if (con == null) {return null;}
+        if (uuid == null) {return null;}
         ArrayList<EcoUserUUIDData> list = new ArrayList<>();
         PreparedStatement prep = null;
         ResultSet rs = null;
