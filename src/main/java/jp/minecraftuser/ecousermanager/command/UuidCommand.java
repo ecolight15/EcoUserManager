@@ -3,11 +3,14 @@ package jp.minecraftuser.ecousermanager.command;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import jp.minecraftuser.ecoframework.PluginFrame;
 import jp.minecraftuser.ecoframework.CommandFrame;
 import jp.minecraftuser.ecousermanager.config.EcoUserManagerConfig;
 import jp.minecraftuser.ecousermanager.db.EcoUserUUIDData;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * uuidコマンドクラス
@@ -67,5 +70,26 @@ public class UuidCommand extends CommandFrame {
         }
         return true;
     }
-    
+
+    /**
+     * コマンド別タブコンプリート処理
+     * @param sender コマンド送信者インスタンス
+     * @param cmd コマンドインスタンス
+     * @param string コマンド文字列
+     * @param strings パラメタ文字列配列
+     * @return 保管文字列配列
+     */
+    @Override
+    protected List<String> getTabComplete(CommandSender sender, Command cmd, String string, String[] strings) {
+        ArrayList<String> list = new ArrayList<>();
+        if (strings.length == 1) {
+            for (Player p : plg.getServer().getOnlinePlayers()) {
+                if (p.getName().toLowerCase().startsWith(strings[0].toLowerCase())) {
+                    list.add(p.getName());
+                }
+            }
+        }
+        list.add("[<offlinePlayerName>]");
+        return list;
+    }
 }
